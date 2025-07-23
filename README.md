@@ -53,7 +53,7 @@ terraform apply
 2 load balancers using nginx_lb_keepalived.sh.tpl
 ``
 
-<img src="https://github.com/pranitach21/nginx_assg/main/screenshots/terraform_output.png">
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/terraform_output.png" width="400">
 
 **3️⃣ Verify Backend Nodes**
 Use the public IPs of each backend to confirm individual server responses:
@@ -67,8 +67,8 @@ curl http://<Node A Public IP>
 curl http://<Node B Public IP>
 # Output: <h1>This is Node B</h1>
 ```
-<img src="https://github.com/pranitach21/nginx_assg/main/screenshots/node_a.png">
-<img src="https://github.com/pranitach21/nginx_assg/main/screenshots/node_b.png">
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/nnode_a.png" width="400">
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_b.png" width="400">
 
 **4️⃣ Verify Load Balancer Functionality**
 The load balancer:
@@ -89,8 +89,8 @@ curl http://<VIP>
 # <h1>This is Node A</h1>
 # <h1>This is Node B</h1>
 ```
-<img src="https://github.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png">
-<img src="https://github.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_b.png">
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png" width="400">
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_b.png" width="400">
 
 ***🔁 Simulate Failover***
 
@@ -122,8 +122,8 @@ Edit
 curl http://<VIP>
 # Output still switches between Node A / Node B
 ```
-<img src="https://github.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png">
-<img src="https://github.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_b.png">
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png" width="400">
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_b.png" width="400">
 
 ## 🎬 Demo 
 
