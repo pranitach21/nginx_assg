@@ -54,9 +54,9 @@ Edit
 terraform init
 terraform apply
 ```
- ** This will create: **
+ **This will create:**
 
- *2 backend EC2 instances using user_data_node_a.sh and user_data_node_b.sh *
+ *2 backend EC2 instances using user_data_node_a.sh and user_data_node_b.sh*
 
  *2 load balancers using nginx_lb_keepalived.sh.tpl*
 
@@ -72,23 +72,23 @@ Edit
 curl http://<Node A Public IP>
 ```
 
-** Output **
+**Output**
 
-* <h1>This is Node A</h1> *
+*<h1>This is Node A</h1>*
 
 ```
 curl http://<Node B Public IP>
 ```
 
-** Output **
+**Output**
 
- * <h1>This is Node B</h1>  *
+*<h1>This is Node B</h1>*
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_a.png" width="400">
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_b.png" width="400">
 
 ***4️⃣ Verify Load Balancer Functionality***
-The load balancer:
+**The load balancer:**
 
 Listens on port 80
 
@@ -102,13 +102,13 @@ Test it:
 Copy
 Edit
 curl http://<VIP>
-``
+```
 
-** Output (on multiple tries): **
+**Output (on multiple tries):**
  
 
-*  <h1>This is Node A</h1>     * 
-*  <h1>This is Node B</h1>     *
+*<h1>This is Node A</h1>* 
+*<h1>This is Node B</h1>*
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png" width="400">
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_b.png" width="400">
@@ -145,9 +145,9 @@ Edit
 curl http://<VIP>
 ```
 
-** Output : **
+**Output :**
 
-* still switches between Node A / Node B  *
+*still switches between Node A / Node B*
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png" width="400">
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_b.png" width="400">
