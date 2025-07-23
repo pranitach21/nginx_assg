@@ -1,4 +1,4 @@
-***🚀 NGINX High Availability Assignment***
+****🚀 NGINX High Availability Assignment****
 
 
 This project provisions a highly available reverse proxy setup using:
@@ -19,7 +19,7 @@ Terraform for infrastructure automation
 | `user_data_node_b.sh`     | Node B user-data: serves static HTML ("This is Node B")       |
 | `nginx_lb_keepalived.sh.tpl` | Configures LBs with NGINX + Keepalived                   |
 
-***⚙️ Infrastructure Overview**
+***⚙️ Infrastructure Overview***
 
 
 | Tier           | Nodes           | Role                                        |
@@ -45,11 +45,14 @@ Edit
 terraform init
 terraform apply
 ```
-This will create:
-
+*This will create:*
+`
 2 backend EC2 instances using user_data_node_a.sh and user_data_node_b.sh
 
 2 load balancers using nginx_lb_keepalived.sh.tpl
+`
+
+<img src="https://github.com/pranitach21/nginx_assg/screenshots/terraform_output.png">
 
 **3️⃣ Verify Backend Nodes**
 Use the public IPs of each backend to confirm individual server responses:
@@ -63,6 +66,8 @@ curl http://<Node A Public IP>
 curl http://<Node B Public IP>
 # Output: <h1>This is Node B</h1>
 ```
+<img src="https://github.com/pranitach21/nginx_assg/screenshots/node_a.png">
+<img src="https://github.com/pranitach21/nginx_assg/screenshots/node_b.png">
 
 **4️⃣ Verify Load Balancer Functionality**
 The load balancer:
@@ -83,7 +88,8 @@ curl http://<VIP>
 # <h1>This is Node A</h1>
 # <h1>This is Node B</h1>
 ```
-
+<img src="https://github.com/pranitach21/nginx_assg/screenshots/eip_output_node_a.png">
+<img src="https://github.com/pranitach21/nginx_assg/screenshots/eip_output_node_b.png">
 
 ***🔁 Simulate Failover***
 
@@ -115,5 +121,13 @@ Edit
 curl http://<VIP>
 # Output still switches between Node A / Node B
 ```
+<img src="https://github.com/pranitach21/nginx_assg/screenshots/eip_output_node_a.png">
+<img src="https://github.com/pranitach21/nginx_assg/screenshots/eip_output_node_b.png">
+
+## 🎬 Demo 
+
+<img src="https://github.com/pranitach21/nginx_assg/videos/initial_setup&working.mp4">
+<img src="https://github.com/pranitach21/nginx_assg/videos/testing_failover.mp4">
+
 
 **✅ This shows the system is resilient with zero downtime.**
