@@ -29,7 +29,7 @@ gh repo clone pranitach21/nginx_assg
 cd nginx_assg
 
 
-2️⃣ Initialize and Apply Terraform
+###  2️⃣ Initialize and Apply Terraform
 terraform init
 terraform apply
 What happens:
@@ -38,7 +38,7 @@ What happens:
 
 2 load balancer nodes are created with nginx_lb_keepalived.sh.tpl.
 
-3️⃣ Verify Backend Nodes
+### 3️⃣ Verify Backend Nodes
 Once provisioned, check that Node A and Node B serve unique content:
 
 bash
@@ -49,7 +49,7 @@ curl http://<Node A Public IP>
 
 curl http://<Node B Public IP>
 # Output: <h1>This is Node B</h1>
-4️⃣ Verify Load Balancer
+### 4️⃣ Verify Load Balancer
 Your load balancers are configured to:
 
 Listen on port 80.
@@ -69,8 +69,8 @@ curl http://<VIP>
 # <h1>This is Node B</h1>
 Try curl multiple times to confirm round-robin is working.
 
-🔁 Simulate Failover
-1️⃣ Check which LB holds the VIP
+## 🔁 Simulate Failover
+### 1️⃣ Check which LB holds the VIP
 
 On LB1:
 
@@ -78,13 +78,13 @@ bash
 Copy
 Edit
 ip addr | grep <VIP>
-2️⃣ Stop Keepalived on the active LB
+### 2️⃣ Stop Keepalived on the active LB
 
 bash
 Copy
 Edit
 sudo systemctl stop keepalived
-3️⃣ Verify VIP moves to the standby LB
+### 3️⃣ Verify VIP moves to the standby LB
 
 On LB2:
 
@@ -92,7 +92,7 @@ bash
 Copy
 Edit
 ip addr | grep <VIP>
-4️⃣ Test again
+### 4️⃣ Test again
 
 bash
 Copy
