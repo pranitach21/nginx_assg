@@ -1,47 +1,48 @@
-# nginx_assg
+***🚀 NGINX High Availability Assignment***
+This project provisions a highly available reverse proxy setup using:
 
+NGINX for load balancing
 
-- **solution.tf** — Defines the infrastructure (EC2 instances, networking, user data).
-- **user_data_node_a.sh** — Configures Node A to serve static HTML: `"This is Node A"`.
-- **user_data_node_b.sh** — Configures Node B to serve static HTML: `"This is Node B"`.
-- **nginx_lb_keepalived.sh.tpl** — Bootstraps the load balancers with:
-  - NGINX reverse proxy config.
-  - Keepalived VRRP setup.
+Keepalived for VIP failover
 
----
+Terraform for infrastructure automation
 
-## ⚙️ Infrastructure Details
+***📁 Repository Contents***
+File	Purpose
+solution.tf	Defines infrastructure (EC2, VPC, user data, EIP)
+user_data_node_a.sh	Node A user-data: serves static HTML ("This is Node A")
+user_data_node_b.sh	Node B user-data: serves static HTML ("This is Node B")
+nginx_lb_keepalived.sh.tpl	Configures LBs with NGINX + Keepalived
 
-| Tier         | Nodes           | Purpose                          |
-|--------------|-----------------|----------------------------------|
-| Backend App  | Node A, Node B  | Serve static HTML pages.         |
-| Load Balancer| LB1, LB2        | Reverse proxy + VIP failover.    |
-| VIP          | Floating IP     | Moves automatically between LBs. |
+***⚙️ Infrastructure Overview**
+Tier	Nodes	Role
+Backend App	Node A, Node B	Serve static HTML pages
+Load Balancer	LB1, LB2	Reverse proxy with VIP failover
+VIP	Floating IP	Automatically moves between LBs
 
----
-
-## 🚀 Deployment Guide
-
-### 1️⃣ Clone This Repository
-
+***🛠️ Deployment Guide***
+**1️⃣ Clone This Repository**
 ```bash
+Copy
+Edit
 gh repo clone pranitach21/nginx_assg
 cd nginx_assg
-
-
-###  2️⃣ Initialize and Apply Terraform
+**2️⃣ Initialize and Apply Terraform**
+```bash
+Copy
+Edit
 terraform init
 terraform apply
-What happens:
+This will create:
 
-2 backend web servers are created with user_data_node_a.sh and user_data_node_b.sh.
+2 backend EC2 instances using user_data_node_a.sh and user_data_node_b.sh
 
-2 load balancer nodes are created with nginx_lb_keepalived.sh.tpl.
+2 load balancers using nginx_lb_keepalived.sh.tpl
 
-### 3️⃣ Verify Backend Nodes
-Once provisioned, check that Node A and Node B serve unique content:
+**3️⃣ Verify Backend Nodes**
+Use the public IPs of each backend to confirm individual server responses:
 
-bash
+```bash
 Copy
 Edit
 curl http://<Node A Public IP>
@@ -49,53 +50,46 @@ curl http://<Node A Public IP>
 
 curl http://<Node B Public IP>
 # Output: <h1>This is Node B</h1>
-### 4️⃣ Verify Load Balancer
-Your load balancers are configured to:
+**4️⃣ Verify Load Balancer Functionality**
+The load balancer:
 
-Listen on port 80.
+Listens on port 80
 
-Forward requests to both backend servers with round-robin.
+Uses round-robin to forward requests to Node A & B
 
-Get your VIP (defined in your Keepalived config).
+Uses a virtual IP (VIP) that fails over if one LB fails
 
-Test:
+Test it:
 
-bash
+```bash
 Copy
 Edit
 curl http://<VIP>
-# Output should alternate between:
+# Output (on multiple tries):
 # <h1>This is Node A</h1>
 # <h1>This is Node B</h1>
-Try curl multiple times to confirm round-robin is working.
+***🔁 Simulate Failover***
+**1️⃣ Check Which LB Owns the VIP**
+On either LB:
 
-## 🔁 Simulate Failover
-### 1️⃣ Check which LB holds the VIP
-
-On LB1:
-
-bash
+```bash
 Copy
 Edit
 ip addr | grep <VIP>
-### 2️⃣ Stop Keepalived on the active LB
-
-bash
+**2️⃣ Stop Keepalived on Active LB**
+```bash
 Copy
 Edit
 sudo systemctl stop keepalived
-### 3️⃣ Verify VIP moves to the standby LB
-
-On LB2:
-
-bash
+**3️⃣ Verify VIP Has Moved to the Standby LB**
+```bash
 Copy
 Edit
 ip addr | grep <VIP>
-### 4️⃣ Test again
-
-bash
+**4️⃣ Confirm High Availability**
+```bash
 Copy
 Edit
 curl http://<VIP>
-# Output still shows Node A / Node B, proving no downtime.
+# Output still switches between Node A / Node B
+**✅ This shows the system is resilient with zero downtime.**
