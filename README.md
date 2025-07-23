@@ -67,7 +67,7 @@ curl http://<Node A Public IP>
 curl http://<Node B Public IP>
 # Output: <h1>This is Node B</h1>
 ```
-<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/nnode_a.png" width="400">
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_a.png" width="400">
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_b.png" width="400">
 
 **4️⃣ Verify Load Balancer Functionality**
