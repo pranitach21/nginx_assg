@@ -53,7 +53,7 @@ Download awscli and terraform from there offical sites.
 aws configure
 ```   
 
-Give secret key, access key and region. Also set profiel name which will be updated in provider "aws" resource as profile
+Give secret key, access key and region. Also set profile name which will be updated in provider "aws" resource as profile
 
 ```
 aws configure list-profiles 
@@ -79,11 +79,14 @@ terraform apply
 
  *2 load balancers using nginx_lb_keepalived.sh.tpl*
 
+ *VIp will also be created*
+
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/terraform_output.png" width="400">
 
 
 ***3️⃣ Verify Backend Nodes***
+
 Use the public IPs of each backend to confirm individual server responses:
 
 Copy the ips from the output given by terraform and run them on local / browser
@@ -135,17 +138,18 @@ Test it:
 
 🔵 LOCAL
 ```
-curl http://<EIP>
+curl http://<VIP>
 ```
 
 🔵 ON BROWSER
 ```
-http://<EIP>
+http://<VIP>
 ```
 
 **Output (on multiple tries):**
 
 *This is Node A* 
+
 *This is Node B*
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png" width="400">
@@ -158,6 +162,7 @@ http://<EIP>
 
 
 ***1️⃣ Check Which LB Owns the VIP***
+
 On either LB:
 ssh / ssm in the server.
 
@@ -182,12 +187,12 @@ ip addr | grep <VIP>
 
 🔵 LOCAL
 ```
-curl http://<EIP>
+curl http://<VIP>
 ```
 
 🔵 ON BROWSER
 ```
-http://<EIP>
+http://<VIP>
 ```
 
 **Output :**
