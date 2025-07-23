@@ -32,19 +32,19 @@ Terraform for infrastructure automation
 
 
 **1️⃣ Clone This Repository**
-
 ```bash
 Copy
 Edit
 gh repo clone pranitach21/nginx_assg
-cd nginx_assg  ```
+cd nginx_assg 
+```
 **2️⃣ Initialize and Apply Terraform**
-
 ```bash
 Copy
 Edit
 terraform init
 terraform apply
+```
 This will create:
 
 2 backend EC2 instances using user_data_node_a.sh and user_data_node_b.sh
@@ -62,6 +62,8 @@ curl http://<Node A Public IP>
 
 curl http://<Node B Public IP>
 # Output: <h1>This is Node B</h1>
+```
+
 **4️⃣ Verify Load Balancer Functionality**
 The load balancer:
 
@@ -80,7 +82,12 @@ curl http://<VIP>
 # Output (on multiple tries):
 # <h1>This is Node A</h1>
 # <h1>This is Node B</h1>
+```
+
+
 ***🔁 Simulate Failover***
+
+
 **1️⃣ Check Which LB Owns the VIP**
 On either LB:
 
@@ -88,20 +95,25 @@ On either LB:
 Copy
 Edit
 ip addr | grep <VIP>
+```
 **2️⃣ Stop Keepalived on Active LB**
 ```bash
 Copy
 Edit
 sudo systemctl stop keepalived
+```
 **3️⃣ Verify VIP Has Moved to the Standby LB**
 ```bash
 Copy
 Edit
 ip addr | grep <VIP>
+```
 **4️⃣ Confirm High Availability**
 ```bash
 Copy
 Edit
 curl http://<VIP>
 # Output still switches between Node A / Node B
+```
+
 **✅ This shows the system is resilient with zero downtime.**
