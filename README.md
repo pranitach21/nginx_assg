@@ -74,7 +74,9 @@ curl http://<Node A Public IP>
 
 **Output**
 
-*<h1>This is Node A</h1>*
+*This is Node A*
+
+<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_a.png" width="400">
 
 ```
 curl http://<Node B Public IP>
@@ -82,9 +84,8 @@ curl http://<Node B Public IP>
 
 **Output**
 
-*<h1>This is Node B</h1>*
+*This is Node B*
 
-<img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_a.png" width="400">
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_b.png" width="400">
 
 ***4️⃣ Verify Load Balancer Functionality***
@@ -105,10 +106,9 @@ curl http://<VIP>
 ```
 
 **Output (on multiple tries):**
- 
 
-*<h1>This is Node A</h1>* 
-*<h1>This is Node B</h1>*
+*This is Node A* 
+*This is Node B*
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png" width="400">
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_b.png" width="400">
