@@ -47,13 +47,31 @@ Edit
 gh repo clone pranitach21/nginx_assg
 cd nginx_assg 
 ```
-***2️⃣ Initialize and Apply Terraform***
+
+***2️⃣ Initialize AWS and Apply Terraform***
+Download awscli and terraform from there offical sites.
+
 ```bash
-Copy
-Edit
+aws configure
+```   
+      *Give secret key, access key and region. Also set profiel name which will be updated in provider "aws" resource as profile*
+
+```
+aws configure list-profiles 
+```
+      *list of all aws profiles will be listed select any one and run the following commands*
+```
+set AWS_PROFILE=<name>
+```
+
+Run terraform commands
+
+```
 terraform init
+terraform plan
 terraform apply
 ```
+
  **This will create:**
 
  *2 backend EC2 instances using user_data_node_a.sh and user_data_node_b.sh*
@@ -63,13 +81,20 @@ terraform apply
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/terraform_output.png" width="400">
 
+
 ***3️⃣ Verify Backend Nodes***
 Use the public IPs of each backend to confirm individual server responses:
 
-```bash
-Copy
-Edit
+Copy the ips from the output given by terraform and run them on local / browser
+
+LOCAL
+```
 curl http://<Node A Public IP>
+```
+
+ON BROWSER
+```
+http://<Node A Public IP>
 ```
 
 **Output**
@@ -78,8 +103,14 @@ curl http://<Node A Public IP>
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_a.png" width="400">
 
+🔵 LOCAL
 ```
 curl http://<Node B Public IP>
+```
+
+🔵 ON BROWSER
+```
+http://<Node AB Public IP>
 ```
 
 **Output**
@@ -88,7 +119,9 @@ curl http://<Node B Public IP>
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/node_b.png" width="400">
 
+
 ***4️⃣ Verify Load Balancer Functionality***
+
 **The load balancer:**
 
 Listens on port 80
@@ -99,10 +132,14 @@ Uses a virtual IP (VIP) that fails over if one LB fails
 
 Test it:
 
-```bash
-Copy
-Edit
-curl http://<VIP>
+🔵 LOCAL
+```
+curl http://<EIP>
+```
+
+🔵 ON BROWSER
+```
+http://<EIP>
 ```
 
 **Output (on multiple tries):**
@@ -120,29 +157,31 @@ curl http://<VIP>
 
 ***1️⃣ Check Which LB Owns the VIP***
 On either LB:
+ssh / ssm in the server.
 
 ```bash
-Copy
-Edit
 ip addr | grep <VIP>
 ```
+
 ***2️⃣ Stop Keepalived on Active LB***
 ```bash
-Copy
-Edit
 sudo systemctl stop keepalived
 ```
+
 ***3️⃣ Verify VIP Has Moved to the Standby LB***
 ```bash
-Copy
-Edit
 ip addr | grep <VIP>
 ```
+
 ***4️⃣ Confirm High Availability***
-```bash
-Copy
-Edit
-curl http://<VIP>
+🔵 LOCAL
+```
+curl http://<EIP>
+```
+
+🔵 ON BROWSER
+```
+http://<EIP>
 ```
 
 **Output :**
