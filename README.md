@@ -1,4 +1,6 @@
 ***🚀 NGINX High Availability Assignment***
+
+
 This project provisions a highly available reverse proxy setup using:
 
 NGINX for load balancing
@@ -8,26 +10,36 @@ Keepalived for VIP failover
 Terraform for infrastructure automation
 
 ***📁 Repository Contents***
-File	Purpose
-solution.tf	Defines infrastructure (EC2, VPC, user data, EIP)
-user_data_node_a.sh	Node A user-data: serves static HTML ("This is Node A")
-user_data_node_b.sh	Node B user-data: serves static HTML ("This is Node B")
-nginx_lb_keepalived.sh.tpl	Configures LBs with NGINX + Keepalived
+
+
+| File                      | Purpose                                                       |
+|---------------------------|---------------------------------------------------------------|
+| `solution.tf`             | Defines infrastructure (EC2, VPC, user data, EIP)             |
+| `user_data_node_a.sh`     | Node A user-data: serves static HTML ("This is Node A")       |
+| `user_data_node_b.sh`     | Node B user-data: serves static HTML ("This is Node B")       |
+| `nginx_lb_keepalived.sh.tpl` | Configures LBs with NGINX + Keepalived                   |
 
 ***⚙️ Infrastructure Overview**
-Tier	Nodes	Role
-Backend App	Node A, Node B	Serve static HTML pages
-Load Balancer	LB1, LB2	Reverse proxy with VIP failover
-VIP	Floating IP	Automatically moves between LBs
+
+
+| Tier           | Nodes           | Role                                        |
+|----------------|------------------|---------------------------------------------|
+| Backend App    | Node A, Node B   | Serve static HTML pages                     |
+| Load Balancer  | LB1, LB2         | Reverse proxy with VIP failover             |
+| VIP            | Floating IP      | Automatically moves between LBs             |
 
 ***🛠️ Deployment Guide***
+
+
 **1️⃣ Clone This Repository**
+
 ```bash
 Copy
 Edit
 gh repo clone pranitach21/nginx_assg
-cd nginx_assg
+cd nginx_assg  ```
 **2️⃣ Initialize and Apply Terraform**
+
 ```bash
 Copy
 Edit
