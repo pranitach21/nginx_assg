@@ -79,7 +79,7 @@ terraform apply
 
  *2 load balancers using nginx_lb_keepalived.sh.tpl*
 
- *VIp will also be created*
+ *VIP will also be created*
 
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/terraform_output.png" width="400">
