@@ -54,12 +54,15 @@ Download awscli and terraform from there offical sites.
 ```bash
 aws configure
 ```   
-      *Give secret key, access key and region. Also set profiel name which will be updated in provider "aws" resource as profile*
+
+Give secret key, access key and region. Also set profiel name which will be updated in provider "aws" resource as profile
 
 ```
 aws configure list-profiles 
 ```
-      *list of all aws profiles will be listed select any one and run the following commands*
+
+list of all aws profiles will be listed select any one and run the following commands
+
 ```
 set AWS_PROFILE=<name>
 ```
@@ -87,12 +90,12 @@ Use the public IPs of each backend to confirm individual server responses:
 
 Copy the ips from the output given by terraform and run them on local / browser
 
-LOCAL
+🔵 LOCAL
 ```
 curl http://<Node A Public IP>
 ```
 
-ON BROWSER
+🔵 ON BROWSER
 ```
 http://<Node A Public IP>
 ```
@@ -155,6 +158,7 @@ http://<EIP>
 🔁 Simulate Failover
 --------------------------------------------------------------------------------------------------
 
+
 ***1️⃣ Check Which LB Owns the VIP***
 On either LB:
 ssh / ssm in the server.
@@ -163,17 +167,21 @@ ssh / ssm in the server.
 ip addr | grep <VIP>
 ```
 
+
 ***2️⃣ Stop Keepalived on Active LB***
 ```bash
 sudo systemctl stop keepalived
 ```
+
 
 ***3️⃣ Verify VIP Has Moved to the Standby LB***
 ```bash
 ip addr | grep <VIP>
 ```
 
+
 ***4️⃣ Confirm High Availability***
+
 🔵 LOCAL
 ```
 curl http://<EIP>
@@ -190,6 +198,7 @@ http://<EIP>
 
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_a.png" width="400">
 <img src="https://raw.githubusercontent.com/pranitach21/nginx_assg/main/screenshots/eip_output_node_b.png" width="400">
+
 
 ---------------------------------------------------------------
 ## 🎬 Demo 
