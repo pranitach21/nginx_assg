@@ -42,8 +42,6 @@ Terraform for infrastructure automation
 
 ***1️⃣ Clone This Repository***
 ```bash
-Copy
-Edit
 gh repo clone pranitach21/nginx_assg
 cd nginx_assg 
 ```
